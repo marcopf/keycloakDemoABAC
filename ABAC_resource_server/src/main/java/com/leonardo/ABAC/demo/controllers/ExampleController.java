@@ -1,23 +1,13 @@
 package com.leonardo.ABAC.demo.controllers;
 
 import com.leonardo.ABAC.demo.entities.ResponseJson;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestClient;
 
 
 @RestController
 @RequestMapping("/sede")
 public class ExampleController {
-
-    private final RestClient restClient;
-
-    @Autowired
-    public ExampleController(RestClient restClient) {
-        this.restClient = restClient;
-    }
-
 
     @GetMapping
     public ResponseEntity<ResponseJson> getPublic() {
