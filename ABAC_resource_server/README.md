@@ -4,7 +4,7 @@ In questo piccolo progetto costruiremo un resource server in java utilizzando
 sfruttando i policy enforcers messi a disposizione da **keycloak**. 
 
 ## Prerequisiti 📦
-- java 21
+- java 17
 - Keycloak 24.0.2
 - Spring-boot 3.2.4
 
