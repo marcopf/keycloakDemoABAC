@@ -8,7 +8,7 @@ Per "runnare" il __Frontend__ e' necessario installare:
 - @angular/cli
 
 # OAUTH2 Config :lock:
-In <strong>/src/app/home/home.component.ts</strong> e' presente la configurazione relativa all' OAUTH2 che verra poi utilizzata dal frontend per eseguire l'autenticazione.
+In [home.component.ts](src/app/home/home.component.ts) e' presente la configurazione relativa all' OAUTH2 che verra poi utilizzata dal frontend per eseguire l'autenticazione.
 
 ```javascript
 const authCodeFlowConfig: AuthConfig = {
@@ -66,7 +66,7 @@ potendo cosi poi creare un lista dinamica utilizzando <strong>@for</strong> di A
 
 # Le Richieste :mega:
 
-Nel riquadro di destra sono presenti dei pulsanti che fanno partire speficihe richieste definite all'interno di <strong>/src/app/home/home.component.html</strong>
+Nel riquadro di destra sono presenti dei pulsanti che fanno partire speficihe richieste definite all'interno di [home.component.html](src/app/home/home.component.html)
 ```html
 <button (click)="getInfo('<URL_RISORSA_RICHIESTA>')" class="btn btn-success w-100">Risorsa Aperta</button>
 
