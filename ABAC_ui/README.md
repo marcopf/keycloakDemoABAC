@@ -1,27 +1,97 @@
-# ABACUi
+# ABAC_ui Demo :book:
+Di seguito alcune specifiche sul codice __Frontend__ relativo alla demo __ABAC__ in keycloak
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
+# Prerequisiti :package:
+per "runnare" il __Frontend__ e' necessario installare:
+- nodejs
+- npm
+- @angular/cli
 
-## Development server
+# OAUTH2 Config :lock:
+In <strong>/src/app/home/home.component.ts</strong> e' presente la configurazione relativa all' OAUTH2 che verra poi utilizzata dal frontend per eseguire l'autenticazione.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+```javascript
+const authCodeFlowConfig: AuthConfig = {
+  // Url of the Identity Provider
+  issuer: 'http://localhost:8080/realms/Demo',
 
-## Code scaffolding
+  // URL of the SPA to redirect the user to after login
+  redirectUri: 'http://localhost:4200',
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+  // The SPA's id. The SPA is registerd with this id at the auth-server
+  // clientId: 'server.code',
+  clientId: 'leonardo',
 
-## Build
+  // Just needed if your auth server demands a secret. In general, this
+  // is a sign that the auth server is not configured with SPAs in mind
+  // and it might not enforce further best practices vital for security
+  // such applications.
+  dummyClientSecret: '<client_secret>',
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+  responseType: 'code',
 
-## Running unit tests
+  // set the scope for the permissions the client should request
+  // The first four are defined by OIDC.
+  // Important: Request offline_access to get a refresh token
+  // The api scope is a usecase specific one
+  scope: 'openid profile',
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  showDebugInformation: true,
+};
+```
 
-## Running end-to-end tests
+# User Info :bust_in_silhouette:
+Per ottenere le informazioni utente viene chiamata l'endpoint di keycloak che restituisce le informazioni relative agli attributi (attributi custom compresi),
+```
+{protocol}://{domain}:{port}/realms/{realm}/account/?userProfileMetadata=true
+```
+>:warning: per poter chiamare quest'endpoint e' necessario essere loggati e avere un'access_token valido
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+potendo cosi poi creare un lista dinamica utilizzando <strong>@for</strong> di Angular
+```html
+<div class="col-4 rounded-3 shadow p-4">
+    <h1 class="text-primary mb-3">Credenziali</h1>
+    @for(attribute of attributes; track attribute){
+        <div class="form-group mt-4">
+            <label for="exampleInputText" class="active">{{attribute.key}}</label>
+            @if (attribute.key == "sede"){
+              <input readonly type="text" class="form-control" id="exampleInputText" value="{{getUpperCase(attribute.value)}}">
+            }@else{
+              <input readonly type="text" class="form-control" id="exampleInputText" value="{{attribute.value}}">
+            }
+        </div>
+    }
+</div>
+```
 
-## Further help
+# Le Richieste :mega:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Nel riquadro di destra sono presenti dei pulsanti che fanno partire speficihe richieste definite all'interno di <strong>/src/app/home/home.component.html</strong>
+```html
+<button (click)="getInfo('http://localhost:4242/sede')" class="btn btn-success w-100">Risorsa Aperta</button>
+
+```
+
+che al click effettuera' la chiamata al resource server tramite la funzione
+```js
+getInfo(url: string){
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem('access_token')
+    }
+  }).then(el=>{
+    if (el.ok){
+      return el.json()
+    }
+    console.log(el)
+    return {value: `<h1 class="text-danger">Error: ${el.statusText} ${el.status}</h1>`}
+  })
+  .then(parsed=>{
+    if (document.querySelector('.display') && document.querySelector('.display')!.innerHTML)
+      document.querySelector('.display')!.innerHTML = `<h3 class="text-primary" style="text-align: start;">Risorsa Protetta:</h3><br><span>${parsed.value}</span>`
+  })
+}
+
+```
+inoltre a puro scopo dimostrtivo la funzione si occupa anche di mostrare i dati ricevuti all'interno del display sottostante.
