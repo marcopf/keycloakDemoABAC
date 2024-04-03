@@ -1,5 +1,5 @@
 # Policies
-E' possibile creare un file jar contentente tutte le policy desiderate, specicandole all'interno della cartella <strong>META-INF/keycloak-scripts.json</strong> seguendo la seguente struttura:
+E' possibile creare un file jar contentente tutte le policy desiderate, specicandole all'interno della cartella <strong>META-INF/keycloak-scripts.json</strong> la seguente struttura:
 ```
 {
   "policies": [
@@ -25,4 +25,4 @@ Ottenuto il file .jar questo va inserito nella cartella providers di keycloak e 
 ```
 ./bin/kc.sh start-dev --features scripts  
 ```
-In seguito basta creare un client con il toggle Authorization abilitato e nelle impostazioni del client selezionare il tab Authorization e poi Policies, da li potremo inserire la nostra policy che verra' listata tra quelle disponibili, verra' aperto un menu che permette di assegnare un nome e una descrizione, fatto cio' e lasciando il campo code in bianco basta salvare la policy e il codice che avevamo importato appirara'. Il "flow" di registrazione della nuova policy e' simile anche in caso di aggiunta per proteggere l'accesso al Resource Server.
+In seguito basta creare un client con il toggle Authorization abilitato e nelle impostazioni del client selezionare il tab Authorization e poi Policies, da li potremo inserire la nostra policy che verra' listata tra quelle disponibili, verra' aperto un menu che permette di assegnare un nome e una descrizione, fatto cio' e lasciando il campo code in bianco basta salvare la policy e il codice che avevamo importato appirara', sara' poi possibile utilizzare la nuova policy per definire le "permission" desiderate.
