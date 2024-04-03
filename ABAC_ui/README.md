@@ -13,14 +13,14 @@ In <strong>/src/app/home/home.component.ts</strong> e' presente la configurazion
 ```javascript
 const authCodeFlowConfig: AuthConfig = {
   // Url of the Identity Provider
-  issuer: 'http://localhost:8080/realms/Demo',
+  issuer: '{protocol}://{domain}:{port}/realms/Demo',
 
   // URL of the SPA to redirect the user to after login
-  redirectUri: 'http://localhost:4200',
+  redirectUri: '{protocol}://{domain}:{port}',
 
   // The SPA's id. The SPA is registerd with this id at the auth-server
   // clientId: 'server.code',
-  clientId: 'leonardo',
+  clientId: '<client_id>',
 
   // Just needed if your auth server demands a secret. In general, this
   // is a sign that the auth server is not configured with SPAs in mind
@@ -68,7 +68,7 @@ potendo cosi poi creare un lista dinamica utilizzando <strong>@for</strong> di A
 
 Nel riquadro di destra sono presenti dei pulsanti che fanno partire speficihe richieste definite all'interno di <strong>/src/app/home/home.component.html</strong>
 ```html
-<button (click)="getInfo('http://localhost:4242/sede')" class="btn btn-success w-100">Risorsa Aperta</button>
+<button (click)="getInfo('<URL_RISORSA_RICHIESTA>')" class="btn btn-success w-100">Risorsa Aperta</button>
 
 ```
 
