@@ -6,7 +6,7 @@ import { PLATFORM_ID } from '@angular/core';
 async function getInfo() {
     
   // effettuo la richesta tramite fetch prestando attenzione all'asincronicita'
-  const res = await fetch(`http://localhost:8080/realms/policy/account/?userProfileMetadata=true`, {
+  const res = await fetch(`http://localhost:8080/realms/Demo/account/?userProfileMetadata=true`, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -31,20 +31,20 @@ async function getInfo() {
 
 const authCodeFlowConfig: AuthConfig = {
   // Url of the Identity Provider
-  issuer: 'http://localhost:8080/realms/policy',
+  issuer: 'http://localhost:8080/realms/Demo',
 
   // URL of the SPA to redirect the user to after login
   redirectUri: 'http://localhost:4200',
 
   // The SPA's id. The SPA is registerd with this id at the auth-server
   // clientId: 'server.code',
-  clientId: 'testPolicy2',
+  clientId: 'leonardo',
 
   // Just needed if your auth server demands a secret. In general, this
   // is a sign that the auth server is not configured with SPAs in mind
   // and it might not enforce further best practices vital for security
   // such applications.
-  // dummyClientSecret: 'secret',
+  dummyClientSecret: 'secret',
 
   responseType: 'code',
 
@@ -71,9 +71,14 @@ export class HomeComponent implements AfterViewInit {
   attributes: any = [];
 
   constructor(private oauthService: OAuthService, @Inject(PLATFORM_ID) private platformId: Object){
+    if (isPlatformBrowser(this.platformId)){
+      this.oauthService.configure(authCodeFlowConfig);
+      this.oauthService.loadDiscoveryDocumentAndTryLogin();
+    }
+  }
 
-    this.oauthService.configure(authCodeFlowConfig);
-    this.oauthService.loadDiscoveryDocumentAndTryLogin();
+  getUpperCase(string: string){
+    return String(string).toUpperCase();
   }
 
   ngAfterViewInit(): void {
@@ -109,8 +114,8 @@ export class HomeComponent implements AfterViewInit {
     this.oauthService.revokeTokenAndLogout();
   }
 
-  romaCall(){
-    fetch('http://localhost:3000/form', {
+  getInfo(url: string){
+    fetch(url, {
       method: 'GET',
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem('access_token')
@@ -119,69 +124,13 @@ export class HomeComponent implements AfterViewInit {
       if (el.ok){
         return el.json()
       }
-      return {value: 'Error not Authorized!'}
+      console.log(el)
+      return {value: `<h1 class="text-danger">Error: ${el.statusText} ${el.status}</h1>`}
     })
     .then(parsed=>{
       if (document.querySelector('.display') && document.querySelector('.display')!.innerHTML)
-        document.querySelector('.display')!.innerHTML = parsed.value
+        document.querySelector('.display')!.innerHTML = `<h3 class="text-primary" style="text-align: start;">Risorsa Protetta:</h3><br><span>${parsed.value}</span>`
     })
-  }
-
-  chietiCall(){
-    fetch('', {
-      method: 'GET',
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem('access_token')
-      }
-    }).then(el=>{
-      if (el.ok){
-        return el.json()
-      }
-      return {value: 'Error not Authorized!'}
-    })
-    .then(parsed=>{
-      if (document.querySelector('.display') && document.querySelector('.display')!.innerHTML)
-        document.querySelector('.display')!.innerHTML = parsed.value
-    })
-    
-  }
-
-  romaEmailCall(){
-    fetch('', {
-      method: 'GET',
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem('access_token')
-      }
-    }).then(el=>{
-      if (el.ok){
-        return el.json()
-      }
-      return {value: 'Error not Authorized!'}
-    })
-    .then(parsed=>{
-      if (document.querySelector('.display') && document.querySelector('.display')!.innerHTML)
-        document.querySelector('.display')!.innerHTML = parsed.value
-    })
-    
-  }
-
-  chietiEmailCall(){
-    fetch('', {
-      method: 'GET',
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem('access_token')
-      }
-    }).then(el=>{
-      if (el.ok){
-        return el.json()
-      }
-      return {value: 'Error not Authorized!'}
-    })
-    .then(parsed=>{
-      if (document.querySelector('.display') && document.querySelector('.display')!.innerHTML)
-        document.querySelector('.display')!.innerHTML = parsed.value
-    })
-    
   }
 
 }

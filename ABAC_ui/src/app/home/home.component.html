@@ -116,7 +116,11 @@
                 @for(attribute of attributes; track attribute){
                     <div class="form-group mt-4">
                         <label for="exampleInputText" class="active">{{attribute.key}}</label>
-                        <input type="text" class="form-control" id="exampleInputText" value="{{attribute.value}}">
+                        @if (attribute.key == "sede"){
+                          <input readonly type="text" class="form-control" id="exampleInputText" value="{{getUpperCase(attribute.value)}}">
+                        }@else{
+                          <input readonly type="text" class="form-control" id="exampleInputText" value="{{attribute.value}}">
+                        }
                     </div>
                 }
             </div>
@@ -128,18 +132,26 @@
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <button (click)="romaCall()" class="btn btn-success w-100">Sede Roma</button>
+                        <button (click)="getInfo('http://localhost:4242/sede')" class="btn btn-success w-100">Risorsa Aperta</button>
                     </div>
                     <div class="col-6">
-                        <button (click)="chietiCall()" class="btn btn-success w-100">Sede Chieti</button>
+                        <button (click)="getInfo('http://localhost:4242/sede/all')" class="btn btn-success w-100">Sedi Chieti o Roma</button>
                     </div>
                 </div>
                 <div class="row mt-4">
                     <div class="col-6">
-                        <button (click)="romaEmailCall()" class="btn btn-danger w-100">Sede Roma (email Policy)</button>
+                        <button (click)="getInfo('http://localhost:4242/sede/roma')" class="btn btn-warning w-100">Sede Roma</button>
                     </div>
                     <div class="col-6">
-                        <button (click)="chietiEmailCall()" class="btn btn-danger w-100">Sede Chieti (email Policy)</button>
+                        <button (click)="getInfo('http://localhost:4242/sede/chieti')" class="btn btn-warning w-100">Sede Chieti</button>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <button (click)="getInfo('http://localhost:4242/sede/roma/protected')" class="btn btn-danger w-100">Sede Roma (email Policy)</button>
+                    </div>
+                    <div class="col-6">
+                        <button (click)="getInfo('http://localhost:4242/sede/chieti/protected')" class="btn btn-danger w-100">Sede Chieti (email Policy)</button>
                     </div>
                 </div>
                 <div class="row justify-content-center mt-5">
