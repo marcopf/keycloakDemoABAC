@@ -1,24 +1,24 @@
 
 # Demo ABAC
 
-## Prerequisiti
+## Prerequisiti 🗃️
 
-Per poter utilizzare correttamente questa demo bisogna soddisfare alcuni requisiti.
+Per poter utilizzare correttamente questa demo bisogna soddisfare tutti i requisiti riportati qui sotto.
 
-#### Keycloak
+#### Keycloak 🔑
 
 - [ ] [Docker](https://docs.docker.com/get-docker/) 25+
 
 #### SpringBoot :leaves:
 
-- [ ] [Java JDK](https://www.oracle.com/java/technologies/downloads/) 17+
-- [ ] [Maven](https://maven.apache.org/download.cgi) 3.8.7+
+- [ ] [Java](https://www.oracle.com/java/technologies/downloads/) 17+
+- [ ] [Maven](https://maven.apache.org/download.cgi) 3.8+
 
-#### Frontend UI
+#### Frontend UI 🖥️
 
-- [ ] [nodejs](https://nodejs.org/en/download)
-- [ ] [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-- [ ] [angular/cli](https://angular.io/cli#installing-angular-cli)
+- [ ] [nodejs](https://nodejs.org/en/download) 18+
+- [ ] [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) 9+
+- [ ] [angular/cli](https://angular.io/cli#installing-angular-cli) 17+
 
 ## Installazione :construction:
 
@@ -34,7 +34,7 @@ Dopo aver clonato la repo bisogna far partire i tre servizi:
 1. **SpringBoot** (Resource Server)
 1. **Frontend UI** (Client).
 
-### Keycloak
+### Keycloak 🔑
 
 Per far partire **Keycloak** bisogna creare un .env dove inserire alcune credenziali e creare una cartella per il volume del database.
 
@@ -59,7 +59,8 @@ Per far partire **Keycloak** bisogna creare un .env dove inserire alcune credenz
     docker compose up
     ```
 
-> INFO: Per maggiori informazioni riguardo **Keycloak** leggete [qui](keycloak/README.me)
+> [!NOTE]
+> Per maggiori informazioni riguardo **Keycloak** leggere [qui](keycloak/README.md)
 
 ### SpringBoot :leaves:
 
@@ -83,11 +84,15 @@ cd ABAC_resource_server
     java -jar target/demo-0.0.1-SNAPSHOT.jar
     ```
 
-> INFO: Per maggiori informazioni riguardo **SpringBoot** leggete [qui](ABAC_resource_server/README.md)
+> [!NOTE]
+> Per maggiori informazioni riguardo **SpringBoot** leggere [qui](ABAC_resource_server/README.md)
 
-### Frontend UI
+### Frontend UI 🖥️
 
 Infine, per rendere disponibile il Frontend UI bisogna scaricare le dipendenze necessarie e poi bisogna compilare ed eseguire il server.
+
+> [!WARNING]
+> Prima di proseguire controllare di aver installato tutti i [requisiti](#prerequisiti), leggere [qui](ABAC_ui/README.md) per istruzioni più dettagliate.
 
 Prima di tutto entra nella cartella `ABAC_ui`
 ```bash
@@ -106,18 +111,15 @@ cd ABAC_ui
     ng serve
     ```
 
-> INFO: Per maggiori informazioni riguardo il Frontend UI leggere [qui](ABAC_ui/README.md)
+> [!NOTE]
+> Per maggiori informazioni riguardo il Frontend UI leggere [qui](ABAC_ui/README.md)
 
 
 
-## Utilizzo
+## Utilizzo 🚀
 
-Per utilizzare effettivamente la demo ci si deve collegare all'url sottostante tramite browser.
-```
-http://localhost:4200
-```
-
-Ed effettuare il login con uno degli utenti disponibili.
+Una volta completata l'installazione e aver fatto partire tutti i servizi, si può procedere al test della demo.
+Prima di tutto bisogna collegarsi al `localhost:4200` da browser e poi si può effettuare il login con uno degli utenti disponibili riportati nella tabella sottostante.
 
 | username | password |
 | -------- | -------- |
@@ -126,5 +128,7 @@ Ed effettuare il login con uno degli utenti disponibili.
 | paolo | paolo |
 | marco | marco |
 
-Infine, cliccando i vari bottoni vengono effettuate delle richieste a diverse risorse, ognuna con dei permessi diversi.
+Infine, cliccando i vari bottoni vengono effettuate delle richieste _GET_ a diverse risorse, ognuna con dei permessi diversi.
+
+
 
