@@ -2,7 +2,7 @@
 Di seguito alcune specifiche sul codice __Frontend__ relativo alla demo __ABAC__ in keycloak
 
 # Prerequisiti :package:
-per "runnare" il __Frontend__ e' necessario installare:
+Per "runnare" il __Frontend__ e' necessario installare:
 - nodejs
 - npm
 - @angular/cli
