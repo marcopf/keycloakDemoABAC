@@ -7,7 +7,7 @@ services:
     image: gpanico_keycloak
     restart: always
     ports:
-      - "8080:8080"
+      - "8080:8443"
     environment:
       - KEYCLOAK_ADMIN=${KEYCLOAK_ADMIN}
       - KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_ADMIN_PASSWORD}
@@ -38,7 +38,3 @@ volumes:
   postgres:
     name: "postgres"
     driver: local
-    driver_opts:
-      type: "none"
-      o: "bind"
-      device: "$PWD/data/postgres"
