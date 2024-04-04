@@ -1,8 +1,0 @@
-{
-  "realm": "Demo",
-  "auth-server-url" : "http://localhost:8080",
-  "resource" : "leonardo",
-  "credentials": {
-    "secret": "Q6EkKaY5fk7yKtvAbyFAo9gxbv9N6GjV"
-  }
-}
