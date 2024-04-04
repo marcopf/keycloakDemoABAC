@@ -1,0 +1,14 @@
+{
+  "policies": [
+    {
+      "name": "sample",
+      "fileName": "sample.js",
+      "description": "policy Description"
+    },
+    {
+      "name": "test",
+      "fileName": "test.js",
+      "description": "policy Description"
+    }
+  ]
+}
