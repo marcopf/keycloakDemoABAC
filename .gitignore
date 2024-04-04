@@ -1,0 +1,6 @@
+.*
+.*~
+**/.*~
+./data/postgres/*
+**/node_modules
+**/target
