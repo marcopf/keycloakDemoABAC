@@ -1,9 +1,0 @@
-{
-  "policies": [
-    {
-    "name": "policyNameReplace",
-    "fileName": "policy.js",
-    "description": "policy Description"
-    }
-  ]
-}
