@@ -20,7 +20,7 @@ Per poter utilizzare correttamente questa demo bisogna soddisfare tutti i requis
 - [ ] [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) 9+
 - [ ] [angular/cli](https://angular.io/cli#installing-angular-cli) 17+
 
-### Proxy :lock:
+#### Proxy :lock:
 
 - [ ] [mitmproxy]()
 
@@ -127,7 +127,7 @@ mitmproxy --mode reverse:http://localhost:8080 -p 8081
 ```
 
 > [!IMPORTANT]
-> Install the proxy with `sudo apt install mitmproxy -y`
+> Installa la proxy con `sudo apt install mitmproxy -y`
 
 
 ## Utilizzo 🚀
