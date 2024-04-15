@@ -6,7 +6,7 @@ import { PLATFORM_ID } from '@angular/core';
 async function getInfo() {
     
   // effettuo la richesta tramite fetch prestando attenzione all'asincronicita'
-  const res = await fetch(`http://localhost:8080/realms/Demo/account/?userProfileMetadata=true`, {
+  const res = await fetch(`http://localhost:8081/realms/Demo/account/?userProfileMetadata=true`, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -31,7 +31,7 @@ async function getInfo() {
 
 const authCodeFlowConfig: AuthConfig = {
   // Url of the Identity Provider
-  issuer: 'http://localhost:8080/realms/Demo',
+  issuer: 'http://localhost:8081/realms/Demo',
 
   // URL of the SPA to redirect the user to after login
   redirectUri: 'http://localhost:4200',

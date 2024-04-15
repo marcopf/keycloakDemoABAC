@@ -20,6 +20,10 @@ Per poter utilizzare correttamente questa demo bisogna soddisfare tutti i requis
 - [ ] [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) 9+
 - [ ] [angular/cli](https://angular.io/cli#installing-angular-cli) 17+
 
+### Proxy :lock:
+
+- [ ] [mitmproxy]()
+
 ## Installazione :construction:
 
 Clona la presente repository sul tuo sistema.
@@ -114,6 +118,16 @@ cd ABAC_ui
 > [!NOTE]
 > Per maggiori informazioni riguardo il Frontend UI leggere [qui](ABAC_ui/README.md)
 
+### Proxy :lock:
+
+Per far partire la proxy bisogna utilizzare il seguente comando.
+
+```bash
+mitmproxy --mode reverse:http://localhost:8080 -p 8081
+```
+
+> [!IMPORTANT]
+> Install the proxy with `sudo apt install mitmproxy -y`
 
 
 ## Utilizzo 🚀

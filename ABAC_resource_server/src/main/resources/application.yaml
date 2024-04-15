@@ -13,4 +13,4 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${KEYCLOAK_PROTOCOL:http}://${KEYCLOAK_DOMAIN:localhost}:${KEYCLOAK_PORT:8080}/realms/${KEYCLOAK_REALM:Demo}
+          issuer-uri: ${KEYCLOAK_PROTOCOL:http}://${KEYCLOAK_DOMAIN:localhost}:${KEYCLOAK_PORT:8081}/realms/${KEYCLOAK_REALM:Demo}
